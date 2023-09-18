@@ -2,6 +2,9 @@ package ventanas;
 
 import java.awt.*;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.*;
 
 public class VentanaJuego extends JFrame{
@@ -11,9 +14,10 @@ public class VentanaJuego extends JFrame{
 	protected JButton btnAcelera;
 	protected JButton btnGiraIzq;
 	protected JButton btnGiraDer;
-	protected JButton Frena;
+	protected JButton btnFrena;
 	protected Coche coche;
-	protected JLabelCoche jLabelCoche;
+	protected PruebaJLabelGrafico cocheGrafico;
+	protected CocheJuego cocheJuego;
 	
 	public VentanaJuego() {
 		
@@ -39,34 +43,81 @@ public class VentanaJuego extends JFrame{
 		btnGiraDer = new JButton("Gira Der.");
 		pnlInferior.add(btnGiraDer, new FlowLayout());
 		
-		Frena = new JButton("Frena");
-		pnlInferior.add(Frena, new FlowLayout());
+		btnFrena = new JButton("Frena");
+		pnlInferior.add(btnFrena, new FlowLayout());
 		
+		pnlPrincipal.setLayout(null);
+		
+		btnAcelera.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cocheGrafico.acelera(5);
+				cocheGrafico.mueve(1000);
+			}
+			
+		});
+		
+		btnGiraIzq.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cocheGrafico.giraIzquierda();
+			}
+			
+		});
+		
+		btnGiraDer.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cocheGrafico.giraDerecha(10);
+			}
+			
+		});
+		
+		btnFrena.addActionListener(new ActionListener() {
+
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				// TODO Auto-generated method stub
+				cocheGrafico.frena(5);
+			}
+			
+		});
+		
+		//aqui creamos todo lo relacionado con la imagen del coche
+		
+		//Creamos los componentes
+		cocheGrafico = new PruebaJLabelGrafico(new ImageIcon("src/ventanas/coche.png"));
+		cocheGrafico.setBounds(200,200,100,150);
+		getContentPane().add(pnlPrincipal, BorderLayout.CENTER);
+		pnlPrincipal.add(cocheGrafico);
+		//Gestion de eventos
+		while(this.isVisible()) {
+			cocheGrafico.mueve(1);
+			try {
+				Thread.sleep(50);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
 	}
+	
+	
 	
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
 		VentanaJuego v = new VentanaJuego();
 		Coche coche = new Coche();
-		JLabelCoche lblCoche = new JLabelCoche();
-		
 		System.out.println(coche.toString());
-		
-		int x = (int) coche.getPosX();
-		int y = (int) coche.getPosY();
-		
-		v.pnlPrincipal.add(lblCoche);
-		
-		JLabel labelLogo = new JLabel();
-		ImageIcon imagen = new ImageIcon("\\Users\\diego\\eclipse-workspace\\Practica0_Repaso_Coche\\src\\ventanas\\coche.png");
-		labelLogo.setIcon(new ImageIcon(imagen.getImage().getScaledInstance(100, 100, Image.SCALE_SMOOTH)));
-		labelLogo.setBounds(x,y,100,100);
-		
-		v.add(labelLogo);
-		
 		v.setVisible(true);
-		
+		v.cocheGrafico.mueve(1);
 	}
 	
 }

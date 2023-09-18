@@ -8,7 +8,7 @@ public class Coche {
 	 protected double posY; // Posición en Y (vertical)
 	 private String piloto; // Nombre de piloto
 	 protected VentanaJuego ventana;
-	 protected JLabelCoche label;
+	 protected PruebaJLabelCoche label;
 	 
 	 
 	public double getMiVelocidad() {
@@ -62,19 +62,4 @@ public class Coche {
 		return "La velocidad del coche es: " + miVelocidad + ", la direccion actual es: " + miDireccionActual + ", la posicion es: x=" 
 					+ posX + ", y=" + posY + " y el piloto se llama " + piloto;
 	}
-	
-	public void acelera( double aceleracion ) {
-		int x = 10;
-		int y = 10;
-		
-	 }
-	 
-	 public void gira( double giro ) {
-	 }
-	 /** Cambia la posición del coche dependiendo de su velocidad y dirección
-	 * @param tiempoDeMovimiento Tiempo transcurrido, en segundos
-	 */
-	 public void mueve( double tiempoDeMovimiento ) {
-		 
-	 }
 }

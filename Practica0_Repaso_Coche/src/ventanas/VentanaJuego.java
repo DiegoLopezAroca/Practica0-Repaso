@@ -92,22 +92,25 @@ public class VentanaJuego extends JFrame{
 		//aqui creamos todo lo relacionado con la imagen del coche
 		
 		//Creamos los componentes
-		cocheGrafico = new PruebaJLabelGrafico(new ImageIcon("src/ventanas/coche.png"));
-		cocheGrafico.setBounds(200,200,100,150);
+		ImageIcon imgCoche = new ImageIcon("src/ventanas/coche.png");
+		JLabel lblCoche = new JLabel(imgCoche);
+		
 		getContentPane().add(pnlPrincipal, BorderLayout.CENTER);
-		pnlPrincipal.add(cocheGrafico);
+		pnlPrincipal.add(lblCoche);
 		//Gestion de eventos
 		while(this.isVisible()) {
-			cocheGrafico.mueve(1);
-			try {
-				Thread.sleep(50);
-			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+			lblCoche.setLocation(200,200);
+			for(int i=0; i<100; i++) {
+				lblCoche.setLocation((int) (coche.getPosX()+1), (int) (coche.getPosY()+1));
+				try {
+					Thread.sleep(1);
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
-	
 	
 	
 	public static void main(String[] args) {
@@ -119,5 +122,6 @@ public class VentanaJuego extends JFrame{
 		v.setVisible(true);
 		v.cocheGrafico.mueve(1);
 	}
+	
 	
 }

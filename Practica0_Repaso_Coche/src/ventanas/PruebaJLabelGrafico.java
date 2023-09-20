@@ -86,10 +86,11 @@ public class PruebaJLabelGrafico extends JLabel{
 		}
 		protected void paintComponent(Graphics g) {
 	        //super.paintComponent(g);
-	        Image img = ((ImageIcon)getIcon()).getImage();
-	        Graphics2D g2 = (Graphics2D) g;
-	        g2.rotate(Math.PI/4);
-	        g2.drawImage(img, 0, 0, 100, 100, null);
+			Image img = ((ImageIcon)getIcon()).getImage();
+			Graphics2D g2 = (Graphics2D) g;
+			g2.rotate( Math.PI / 4 );
+			g2.rotate( 3 * Math.PI / 4, 50, 50 );
+			g2.drawImage( img, 0, 0, 100, 100, null  );
 		}
 		
 
@@ -100,7 +101,7 @@ public class PruebaJLabelGrafico extends JLabel{
 
 	    // Método para mover el coche
 	    public void mueve(int tiempoDeMovimiento) {
-	    	lblCoche.setBounds(200,200,100,150);
+	    	lblCoche.setLocation(200,200);
 			for(int i=0; i<100; i++) {
 				lblCoche.setLocation((int) (coche.getPosX()+1), (int) (coche.getPosY()+1));
 				try {
